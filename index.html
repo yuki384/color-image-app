@@ -7,8 +7,7 @@
   <body>
     <h1>〇〇</h1>
     <p>〇〇は、イメージから色の提案をするツールです。</p>
-    <div class="image-list">
-
+    <div id="image-list">
     </div>
     <button type="button" name="button"></button>
     <script type="text/javascript">
@@ -18,6 +17,11 @@
       [1, "ポップ", 0,9,10, 330,85,100],
       [2, "明るい", 0,6,10, 0,20,100]
     ];
+    var list = "";
+    for(var i=0,l=images.length;i<l;i++){
+      list = list+'<input type="checkbox" id = "check_'+i+'"/><label for=check_'+i+' class="image">'+images[i][1]+'</label>';
+    }
+    document.getElementById("image-list").innerHTML = list;
     </script>
   </body>
 </html>
