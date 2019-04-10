@@ -9,17 +9,16 @@
     <p>〇〇は、イメージから色の提案をするツールです。</p>
     <div id="image-list">
     </div>
-    <button type="button" name="button"></button>
     <input type="button" value="" onclick="teian();"/>
     <div id="color">
       a
     </div>
     <script type="text/javascript">
-    //id,名前,色彩(Max10)彩度(Max10)明度(Max10)に与える影響,色彩(Max360)彩度(Max100)明度(Max100)の数値
+    //id,名前,色彩(Max10)彩度(Max10)輝度(Max10)に与える影響,色彩(Max360)彩度(Max100)輝度(Max100)の数値
     var images = [
-      [0, "さわやか", 9,9,10, 200,30,100],
-      [1, "ポップ", 0,9,10, 330,85,100],
-      [2, "明るい", 0,6,10, 0,20,100]
+      [0, "さわやか", 9,9,10, 200,100,80],
+      [1, "ポップ", 0,9,10, 330,100,50],
+      [2, "明るい", 0,6,10, 0,100,95]
     ];
     var list = "";
     for(var i=0,l=images.length;i<l;i++){
