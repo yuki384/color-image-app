@@ -10,6 +10,10 @@
     <div id="image-list">
     </div>
     <button type="button" name="button"></button>
+    <input type="button" value="" onclick="teian();"/>
+    <div id="color">
+      a
+    </div>
     <script type="text/javascript">
     //id,名前,色彩(Max10)彩度(Max10)明度(Max10)に与える影響,色彩(Max360)彩度(Max100)明度(Max100)の数値
     var images = [
@@ -22,6 +26,32 @@
       list = list+'<input type="checkbox" id = "check_'+i+'"/><label for=check_'+i+' class="image">'+images[i][1]+'</label>';
     }
     document.getElementById("image-list").innerHTML = list;
+    function teian(){
+      var checkedImages = [];
+      var a = 0;
+      for(var i=0,l=images.length;i<l;i++){
+        var checkbox = document.getElementById("check_"+i);
+        if (checkbox.checked){
+          checkedImages[a]=images[i];
+          a++;
+        }
+      }
+      var h = 0;
+      var s = 0;
+      var eru = 0;
+      for(var i=0,l=checkedImages.length;i<l;i++){
+        if(checkedImages[i]){
+          h=h+checkedImages[i][5];
+          s=s+checkedImages[i][6];
+          eru=eru+checkedImages[i][7];
+        }
+      }
+
+      h=h/checkedImages.length;
+      s=s/checkedImages.length;
+      eru=eru/checkedImages.length;
+      document.getElementById("color").style.backgroundColor = "hsl("+h+","+s+"%,"+eru+"%)";
+    }
     </script>
   </body>
 </html>
