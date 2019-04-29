@@ -27,12 +27,12 @@
     document.getElementById("image-list").innerHTML = list;
     function teian(){
       var checkedImages = [];
-      var a = 0;
+      var n = 0;
       for(var i=0,l=images.length;i<l;i++){
         var checkbox = document.getElementById("check_"+i);
         if (checkbox.checked){
-          checkedImages[a]=images[i];
-          a++;
+          checkedImages[n]=images[i];
+          n++;
         }
       }
       var h = 0;
