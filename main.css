@@ -32,3 +32,12 @@
 body{
   padding: 36px;
 }
+
+.generate{
+  padding: 4px 8px;
+  margin: 16px 8px;
+  background-color: #31bccc;
+  border-radius: 4px;
+  color: #fff;
+  border: none;
+}
