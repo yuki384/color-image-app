@@ -35,20 +35,40 @@
           n++;
         }
       }
-      var h = 0;
-      var s = 0;
-      var eru = 0;
-      for(var i=0,l=checkedImages.length;i<l;i++){
-        if(checkedImages[i]){
-          h=h+checkedImages[i][5];
-          s=s+checkedImages[i][6];
-          eru=eru+checkedImages[i][7];
-        }
+      //Javascriptわからんマンだから効率いい書き方がわからない。
+      //同じような内容のコードをh,s,l分、計3こ書いてる。ダサいコードである。絶対もっといい感じになるのに。
+
+
+
+      checkedImages.sort(function(a, b) {
+        return (a.Ih > b.Ih) ? -1 : 1;
+      });
+      var h = checkedImages[0].h;
+      for(var i=1,l=checkedImages.length;i<l;i++){
+        var diff = h-checkedImages[i].h;
+        var z = h-((diff/10)*checkedImages[i].Ih);
+        h=(z+h)/2;
       }
 
-      h=h/checkedImages.length;
-      s=s/checkedImages.length;
-      eru=eru/checkedImages.length;
+      checkedImages.sort(function(a, b) {
+        return (a.Is > b.Is) ? -1 : 1;
+      });
+      var s = checkedImages[0].s;
+      for(var i=1,l=checkedImages.length;i<l;i++){
+        var diff = s-checkedImages[i].s;
+        z = s-((diff/10)*checkedImages[i].Is);
+        s=(z+s)/2;
+      }
+
+      checkedImages.sort(function(a, b) {
+        return (a.Il > b.Il) ? -1 : 1;
+      });
+      var eru= checkedImages[0].l;
+      for(var i=1,l=checkedImages.length;i<l;i++){
+        var diff = eru-checkedImages[i].l;
+        z = eru-((diff/10)*checkedImages[i].Il);
+        eru=(z+eru)/2;
+      }
       document.getElementById("color").style.backgroundColor = "hsl("+h+","+s+"%,"+eru+"%)";
     }
     </script>
