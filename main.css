@@ -9,12 +9,26 @@
   border-radius: 4px;
   padding: 4px 8px;
   margin: 2px;
-  border: solid 2px #31bccc;
-  color: #31bccc;
+  border: solid 1px #555;
+  color: #555;
 }
 #image-list input:checked +label{
   background-color: #31bccc;
   transition: .3s;
   color: #fff;
   font-weight: bold;
+  border: solid 1px #31bccc;
+}
+
+.generate{
+  padding: 4px 8px;
+  margin: 16px 8px;
+  background-color: #31bccc;
+  border-radius: 4px;
+  color: #fff;
+  border: none;
+}
+
+body{
+  padding: 36px;
 }
