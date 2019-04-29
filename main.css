@@ -2,3 +2,19 @@
   height: 120px;
   border-radius: 4px;
 }
+#image-list input{
+  display: none;
+}
+#image-list label{
+  border-radius: 4px;
+  padding: 4px 8px;
+  margin: 2px;
+  border: solid 2px #31bccc;
+  color: #31bccc;
+}
+#image-list input:checked +label{
+  background-color: #31bccc;
+  transition: .3s;
+  color: #fff;
+  font-weight: bold;
+}
