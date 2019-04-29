@@ -16,13 +16,13 @@
     <script type="text/javascript">
     //id,名前,色彩(Max10)彩度(Max10)輝度(Max10)に与える影響,色彩(Max360)彩度(Max100)輝度(Max100)の数値
     var images = [
-      [0, "さわやか", 9,9,10, 200,100,80],
-      [1, "ポップ", 0,9,10, 330,100,50],
-      [2, "明るい", 0,6,10, 0,100,95]
+      {id:0, name:"さわやか", Ih:9,Is:7,Il:7, h:200,s:100,l:90},
+      {id:1, name:"ポップ", Ih:0,Is:9,Il:8, h:330,s:100,l:50},
+      {id:2, name:"明るい", Ih:0,Is:6,Il:9, h:0,s:100,l:95}
     ];
     var list = "";
     for(var i=0,l=images.length;i<l;i++){
-      list = list+'<input type="checkbox" id = "check_'+i+'"/><label for=check_'+i+' class="image">'+images[i][1]+'</label>';
+      list = list+'<input type="checkbox" id = "check_'+i+'"/><label for=check_'+i+' class="image">'+images[i].name+'</label>';
     }
     document.getElementById("image-list").innerHTML = list;
     function teian(){
