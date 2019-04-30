@@ -11,7 +11,7 @@
     <div id="image-list">
     </div>
     <input type="button" value="生成" onclick="teian();" class="generate"/>
-    <div id="color">
+    <div id="main-color" class="color" >
     </div>
     <script type="text/javascript">
     //id,名前,色彩(Max10)彩度(Max10)輝度(Max10)に与える影響,色彩(Max360)彩度(Max100)輝度(Max100)の数値
@@ -69,7 +69,7 @@
         z = eru-((diff/10)*checkedImages[i].Il);
         eru=(z+eru)/2;
       }
-      document.getElementById("color").style.backgroundColor = "hsl("+h+","+s+"%,"+eru+"%)";
+      document.getElementById("main-color").style.backgroundColor = "hsl("+h+","+s+"%,"+eru+"%)";
     }
     </script>
   </body>
