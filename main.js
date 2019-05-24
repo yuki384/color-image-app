@@ -13,6 +13,50 @@ for(var i=0,l=images.length;i<l;i++){
   list = list+'<input type="checkbox" id = "check_'+i+'"/><label for=check_'+i+' class="image">'+images[i].name+'</label>';
 }
 document.getElementById("image-list").innerHTML = list;
+
+/**
+ * `type`に対するプロパティ名の定義を返す
+ * @param {string} type
+ * @returns {{effect: string, value: string}}
+ * @example
+ * type: "色彩" の定義は "Ih"と"h"というプロパティで定義されている
+ * getTypeKeys("色彩"); // { effect: "Ih", value: "h" }
+ */
+function getTypeKeys(type) {
+  if (type === "色彩") {
+    return {
+      effect: "Ih",
+      value: "h"
+    };
+  } else if (type === "彩度") {
+    return {
+      effect: "Is",
+      value: "s"
+    };
+  } else if (type === "輝度") {
+    return {
+      effect: "Il",
+      value: "l"
+    };
+  }
+  throw new Error(type + "は未定義のtypeです")
+}
+
+function computeHSL(checkedImages, type) {
+  var typeKey = getTypeKeys(type);
+  // 影響度順にソートし直す
+  // Array#sortは破壊的なメソッドなので、slice()でコピーしてからソートする
+  var sortedCheckedImages = checkedImages.slice().sort(function (a, b) {
+    return (a[typeKey.effect] > b[typeKey.effect]) ? -1 : 1;
+  });
+  var value = sortedCheckedImages[0][typeKey.value];
+  for (var i = 1, l = sortedCheckedImages.length; i < l; i++) {
+    var diff = value - sortedCheckedImages[i][typeKey.value];
+    var z = value - ((diff / 10) * sortedCheckedImages[i][typeKey.effect]);
+    value = (z + value) / 2;
+  }
+  return value;
+}
 function teian(){
   var checkedImages = [];
   var n = 0;
@@ -23,39 +67,13 @@ function teian(){
       n++;
     }
   }
-  //Javascriptわからんマンだから効率いい書き方がわからない。
-  //同じような内容のコードをh,s,l分、計3こ書いてる。ダサいコードである。絶対もっといい感じになるのに。
-
-
-
-  checkedImages.sort(function(a, b) {
-    return (a.Ih > b.Ih) ? -1 : 1;
-  });
-  var h = checkedImages[0].h;
-  for(var i=1,l=checkedImages.length;i<l;i++){
-    var diff = h-checkedImages[i].h;
-    var z = h-((diff/10)*checkedImages[i].Ih);
-    h=(z+h)/2;
+  if(checkedImages.length === 0){
+      alert("1つ以上のイメージを選択してください");
+      return;
   }
-
-  checkedImages.sort(function(a, b) {
-    return (a.Is > b.Is) ? -1 : 1;
-  });
-  var s = checkedImages[0].s;
-  for(var i=1,l=checkedImages.length;i<l;i++){
-    var diff = s-checkedImages[i].s;
-    z = s-((diff/10)*checkedImages[i].Is);
-    s=(z+s)/2;
-  }
-
-  checkedImages.sort(function(a, b) {
-    return (a.Il > b.Il) ? -1 : 1;
-  });
-  var eru= checkedImages[0].l;
-  for(var i=1,l=checkedImages.length;i<l;i++){
-    var diff = eru-checkedImages[i].l;
-    z = eru-((diff/10)*checkedImages[i].Il);
-    eru=(z+eru)/2;
-  }
+  // HSLの値を計算する
+  var h = computeHSL(checkedImages, "色彩");
+  var s = computeHSL(checkedImages, "彩度");
+  var eru = computeHSL(checkedImages, "輝度");
   document.getElementById("main-color").style.backgroundColor = "hsl("+h+","+s+"%,"+eru+"%)";
 }
